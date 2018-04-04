@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_saleorder_document_inherit_document">
+        <t t-call="report.external_layout">
+            <t t-call="report.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <div class="page">
+                        <t t-call="report.internal_layout">
+                            <div class="oe_structure"/>
+                            <div class="row">
+                                <!--<t t-foreach="doc.pre_print_report()" t-as="page">-->
+                                <table class="table table-condensed">
+                                    <thead>
+                                        <div class="text-right col-xs-6 text-right">
+                                            <strong class="text-right">توقيت الطلبية</strong>
+                                            <br></br>
+                                            <div class="col-xs-6 text-right">
+                                                <strong class="text-right">إلى</strong>
+                                                <br></br>
+                                                <!--<span t-field="doc.date_from"></span>-->
+                                            </div>
+                                            <div class="col-xs-6 text-right">
+                                                <strong class="text-right">من</strong>
+                                                <br></br>
+                                                <!--<span t-field="doc.date_order"></span>-->
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6 text-right">
+                                            <h3>تقرير تسليم للعميل</h3>
+                                        </div>
+                                        <br></br>
+                                        <br></br>
+                                        <br></br>
+                                        <br></br>
+                                        <div class="col-xs-2 text-right">
+                                            <strong>الحى</strong>
+                                            <br></br>
+                                            <!--<span t-field="doc.partner_id.zone_id"></span>-->
+                                        </div>
+                                        <div class="col-xs-2 text-right">
+                                            <strong>المدينة</strong>
+                                            <br></br>
+                                            <!--<span t-field="doc.partner_id.city_id"></span>-->
+                                        </div>
+                                        <div class="col-xs-2 text-right">
+                                            <strong>المحافظة</strong>
+                                            <br></br>
+                                            <!--<span t-field="doc.partner_id.state_id"></span>-->
+                                        </div>
+                                        <div class="col-xs-2">
+                                            <strong>الدولة</strong>
+                                            <br></br>
+                                            <!--<span t-field="doc.partner_id.country_id"></span>-->
+                                        </div>
+                                        <div class="col-xs-2 text-right">
+                                            <strong>فترةالتسليمX</strong>
+                                            <br></br>
+                                            <!--<span t-field="doc.date_order"></span>-->
+                                        </div>
+
+                                    </thead>
+                                    <tbody>
+                                        <!--<t t-foreach="docs.pre_print_report()" t-as="page">-->
+                                        <t t-foreach="sale_lines_ids" t-as="p">
+                                            <p>in side</p>
+                                            <!--<span t-field="p.order_id.customer_id"/>-->
+                                        </t>
+                                        <tr>
+                                            <td class="text-right">
+                                                <strong>الشارع</strong>
+                                            </td>
+                                            <td class="text-right">
+                                                <strong>رقم العمارة</strong>
+                                            </td>
+                                            <td class="text-right">
+                                                <strong>الشقة</strong>
+                                            </td>
+                                            <td class="text-right">
+                                                <strong>اسم العميل</strong>
+                                            </td>
+                                        </tr>
+
+                                        <!--</t>-->
+                                    </tbody>
+
+                                </table>
+                            </div>
+                        </t>
+                    </div>
+                </t>
+
+            </t>
+        </t>
+
+    </template>
+
+    <template id="report_sale_order_inherit">
+        <t t-call="report.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="dvit_website_report.report_saleorder_document_inherit_document"
+                   t-lang="doc.partner_id.lang"/>
+            </t>
+        </t>
+    </template>
+</odoo>
+
+        <!--<tr class="text-right">-->
+        <!--<td class="text-right">-->
+        <!--<span t-field="doc.sale_lines_ids.customer_id"/>-->
+        <!--&lt;!&ndash;<span t-field="doc.sale_lines_ids.street"/>&ndash;&gt;-->
+        <!--</td>-->
+        <!--<td>-->
+        <!--&lt;!&ndash;<span t-field="doc.partner_id.building_id"/>&ndash;&gt;-->
+        <!--</td>-->
+        <!--<td class="text-right">-->
+        <!--&lt;!&ndash;<span t-field="doc.partner_id.floor"/>&ndash;&gt;-->
+        <!--</td>-->
+        <!--<td class="text-right">-->
+        <!--<t t-esc="doc.sale_lines_ids"/>-->
+        <!--</td>-->
+        <!--</tr>-->
+
+        <!--<t t-foreach="page" t-as="layout_category">-->
+
+
+        <!--Lines associated-->
+
+
+        <!--<t t-foreach="docs.sale_lines_ids" t-as="l">-->
+        <!--&lt;!&ndash;<t foreach="layout_category['doc.sale_lines_ids']" t-as="l">&ndash;&gt;-->
+        <!--<p>1</p>-->
+        <!--<td>-->
+        <!--<t t-if="l.customer_id != 0">-->
+        <!--customer:-->
+        <!--<t t-esc="l.customer_id"/>-->
+        <!--<br></br>-->
+        <!--</t>-->
+        <!--</td>-->
+        <!--<td>-->
+        <!--<t t-esc="l.get('name')"/>-->
+        <!--<t t-esc="l.pro_type"/>-->
+        <!--</td>-->
+        <!--<td>-->
+        <!--customer:-->
+        <!--<span t-field="doc.sale_lines_ids.pro_type"/>-->
+        <!--<t t-esc="doc.sale_lines_ids.pro_type"/>-->
+        <!--</td>-->
+        <!--<td>-->
+        <!--<span t-field="l.pro_uom_qty"/>-->
+        <!--</td>-->
+        <!--<td>-->
+        <!--<span t-field="l.pro_price_unit"/>-->
+        <!--</td>-->
+        <!--<td>-->
+        <!--<t t-if="l.total != 0">-->
+        <!--Amount:-->
+        <!--<span t-field="l.total"/>-->
+        <!--<br></br>-->
+        <!--</t>-->
+        <!--</td>-->
+        <!--<br></br>-->
+        <!--</t>-->

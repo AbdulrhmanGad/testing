@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report
+                id="report_one"
+                string="delivery"
+                model="dvit.website.report"
+                report_type="qweb-pdf"
+                file="dvit_website_report.report_saleorder_document_inherit_document"
+                name="dvit_website_report.report_saleorder_document_inherit_document"
+        />
+     <!--model="website.report"-->
+    </data>
+</odoo>

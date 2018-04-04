@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="website_report_new" model="ir.ui.view">
+        <field name="name">Delivery</field>
+        <field name="model">dvit.website.report</field>
+        <field name="arch" type="xml">
+            <form string="Report Options">
+                <group col="4">
+                    <field name="date_from" required="True"/>
+                    <field name="date_to" required="True"/>
+                </group>
+                <footer>
+                    <button name="pre_print_report" string="Print" type="object" default_focus="1"
+                            class="oe_highlight"/>
+                    or
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_report_website" model="ir.actions.act_window">
+        <field name="name">Delivery</field>
+        <field name="res_model">dvit.website.report</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="website_report_new"/>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_website_report_new" name="Delivery" parent="sales_team.menu_sale_report"
+              action="action_report_website"/>
+
+    <record id="action_menu_website_report_new" model="ir.values">
+        <field name="model_id" ref="dvit_website_report.model_dvit_website_report_dvit_website_report"/>
+        <field name="name">Delivery</field>
+        <field name="model">sale.order</field>
+        <field name="key2">client_print_multi</field>
+        <field name="value" eval="'ir.actions.act_window,' +str(ref('action_report_website'))"/>
+        <field name="key">action</field>
+    </record>
+
+
+</odoo>
